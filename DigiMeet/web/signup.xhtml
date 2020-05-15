@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel= "stylesheet" type="text/css" href="css/signup.css"/>
+        <title>DigiMeet</title>
+    </h:head>
+    <h:body style = "background: lightslategray">
+  <div class="header">
+            <h1>DigiMeet Sign UP</h1>
+            <p> Sign up for fun!</p>
+        </div>
+                <div class="topnav">
+                    <a href="index.xhtml">Main Page</a>
+                    <a href="faces/login.xhtml">Log In</a>
+                    <p style ="float:right; padding: 0px 25px 0px; color:deepskyblue;font-size: 20px"> DigiMeet </p>
+                </div>
+            <div class="container">
+                        <h:form id="signUp" style="border:1px solid black">
+            <h2 style="text-align:center">Sign Up</h2>
+            <p style="padding:10px">Please fill this form to create an account</p>
+                <tr> 
+                    <td>
+                        <h:panelGrid columns="2">
+
+                            <h:outputText style="padding:10px" value="Name"/>   
+                            <h:inputText style="padding:10px" value="#{user.name}" required="true"
+                                         />
+                            <h:outputText style="padding:10px" value="Surname"/>   
+                            <h:inputText style="padding:10px" value="#{user.surname}" required="true"
+                                         />
+                            <h:outputText style="padding:10px" value="Country"/>
+                            <h:selectOneMenu style="padding:10px" value="#{user.country}" >
+                                <f:selectItem itemLabel="Ankara" itemValue="Ankara"/>
+                                <f:selectItem itemLabel="İstanbul" itemValue="İstanbul"/>
+                                <f:selectItem itemLabel="Sakarya" itemValue="Sakarya"/>
+                                <f:selectItem itemLabel="Kayseri" itemValue="Kayseri"/>
+                                <f:selectItem itemLabel="Çanakkale" itemValue="Çanakkale"/>
+                                <f:selectItem itemLabel="İzmir" itemValue="İzmir"/>
+                                <f:selectItem itemLabel="Adana" itemValue="Adana"/>
+                                <f:selectItem itemLabel="Bingöl" itemValue="Bingöl"/>
+                                <f:selectItem itemLabel="Antalya" itemValue="Antalya"/>
+                                <f:selectItem itemLabel="Zonguldak" itemValue="Zonguldak"/>
+                                <f:selectItem itemLabel="Bursa" itemValue="Bursa"/>
+                            </h:selectOneMenu>
+                            <h:outputText style="padding:10px" value="Gender"/>
+                            <h:selectOneRadio style="padding:10px" value="#{user.gender}" required="true"
+                                              >
+                                <f:selectItem itemLabel="Female" itemValue="Female"/>
+                                <f:selectItem itemLabel="Male" itemValue="Male"/>
+                            </h:selectOneRadio>
+                            <h:outputText style="padding:10px" value="E-mail"/>
+                            <h:inputText style="padding:10px" value="#{user.e_mail}" required="true"
+                                         
+                                         validatorMessage="Invalid e-mail address format">
+                                <f:validateRegex pattern=
+                                                 "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+                            </h:inputText>
+                            <h:outputText style="padding:10px" value="Password"/>
+                            <h:inputSecret style="padding:10px" value="#{user.password}" required="true"
+                                           />
+                            <h:outputText style="padding:10px" value="I agree to the terms of service"/>
+                            <h:selectBooleanCheckbox style="padding:10px" value="#{user.control_of_accept}" required="true"
+                                                     />
+                        </h:panelGrid>
+                        <h:commandButton action="#{user.signUp()}" value="Sign UP!" style="  background-color: greenyellow;
+                                        color: white;
+                                        padding: 14px 20px;
+                                         margin: 8px 0;
+                                     border: none;
+                                 cursor: pointer;
+                                        width: 60%;
+                                            opacity: 0.9;
+                                                    float:right;
+                                        border-radius: 4px;"/>
+                    </td>
+                </tr>
+                    </h:form>
+            </div>
+
+        <div class="termsOfService">
+            <p>1. Terms
+By accessing this Website, accessible from Website.com, you are agreeing to be bound by these Website Terms and Conditions of Use and agree that you are responsible for the agreement with any applicable local laws. If you disagree with any of these terms, you are prohibited from accessing this site. The materials contained in this Website are protected by copyright and trade mark law.
+2. Use License
+Permission is granted to temporarily download one copy of the materials on Company Name's Website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+modify or copy the materials;
+use the materials for any commercial purpose or for any public display;
+attempt to reverse engineer any software contained on Company Name's Website;
+remove any copyright or other proprietary notations from the materials; or
+transferring the materials to another person or "mirror" the materials on any other server.
+This will let Company Name to terminate upon violations of any of these restrictions. Upon termination, your viewing right will also be terminated and you should destroy any downloaded materials in your possession whether it is printed or electronic format.
+3. Disclaimer
+All the materials on Company Name's Website are provided “as is”. Company Name makes no warranties, may it be expressed or implied, therefore negates all other warranties. Furthermore, Company Name does not make any representations concerning the accuracy or reliability of the use of the materials on its Website or otherwise relating to such materials or any sites linked to this Website.
+4. Limitations
+Company Name or its suppliers will not be hold accountable for any damages that will arise with the use or inability to use the materials on Company Name's Website, even if Company Name or an authorize representative of this Website has been notified, orally or written, of the possibility of such damage. Some jurisdiction does not allow limitations on implied warranties or limitations of liability for incidental damages, these limitations may not apply to you.
+5. Revisions and Errata
+The materials appearing on Company Name's Website may include technical, typographical, or photographic errors. Company Name will not promise that any of the materials in this Website are accurate, complete, or current. Company Name may change the materials contained on its Website at any time without notice. Company Name does not make any commitment to update the materials.
+6. Links
+Company Name has not reviewed all of the sites linked to its Website and is not responsible for the contents of any such linked site. The presence of any link does not imply endorsement by Company Name of the site. The use of any linked website is at the user's own risk.
+7. Site Terms of Use Modifications
+Company Name may revise these Terms of Use for its Website at any time without prior notice. By using this Website, you are agreeing to be bound by the current version of these Terms and Conditions of Use.
+8. Governing Law
+Any claim related to Company Name's Website shall be governed by the laws of Country without regards to its conflict of law provisions.</p>
+        </div>
+
+    </h:body>
+</html>
+

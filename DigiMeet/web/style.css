@@ -1,0 +1,33 @@
+body{
+   background:#EEE;
+   background-color: #24b6ff
+}
+
+h2{
+    font-family: monospace;
+    text-align: center;
+    color:darkorange;
+    font-size: 40px;
+}
+
+
+.buttons .myProfile{
+    color: red;
+}
+
+.buttons .newPost{
+    color: blue;
+}
+
+.buttons .trends{
+    color: green;
+}
+
+.dataTable{
+    text-align: center;
+    color: pink;
+}
+
+.columnClass{
+    text-align: center;
+}

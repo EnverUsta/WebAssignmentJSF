@@ -1,0 +1,53 @@
+.topnav {
+  background-color: slategray;
+  overflow: hidden;
+}
+
+
+.topnav a {
+  float: left;
+  color: aqua;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+
+.topnav a:hover {
+  background-color: lightseagreen;
+  color: black;
+}
+
+
+.topnav a.active {
+  background-color: teal;
+  color: white;
+}
+
+.leftP {
+    padding: 15px;
+    float: left;
+    width: 60%;
+}
+
+.rightP {
+    float: right;
+    width: 40%;
+}
+
+.header {
+  padding: 30px;
+  text-align: center;
+  background: lightslategray;
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

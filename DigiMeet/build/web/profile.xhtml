@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel= "stylesheet" type="text/css" href="style.css"/>
+        <title>DigiMeet</title>
+    </h:head>
+    <h:body>
+        <h2>Profile</h2>
+
+        <h:form id="profile">
+            <table align="center">
+                <tr style="padding: 10px"> 
+                    <td>
+                        <h:commandButton action="#{user.goAccount()}" value="Account"/>
+                    </td>
+                    <td>      </td>
+                    <td>
+                        <h:commandButton action="#{user.goFriends()}" value="Follow Friend"/>
+                    </td>
+                    <td>
+                        <h:commandButton action="#{user.goMyFriends()}" value="My Friends"/>
+                    </td>
+                    <td align="right">
+                        <h:commandButton action="#{user.goNewPost()}" value="New Post"/>
+                    </td>
+                </tr>
+            </table>
+            <table align="center" style="padding: 20px">
+                <tr>
+                    <td>
+                        <h:dataTable value="#{user.getMyPosts()}" var="post">
+                                <h:column>
+                                    <div style="background-color: white; min-width: 1000px; margin:10px; padding:15px; text-align: center; color: red;">
+                                        <h:outputText value="#{post}"/>
+                                    </div>
+                                </h:column>
+                        </h:dataTable>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+    </h:body>
+</html>
+

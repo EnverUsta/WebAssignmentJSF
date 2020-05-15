@@ -1,0 +1,50 @@
+.topnav {
+  background-color: slategray;
+  overflow: hidden;
+}
+
+
+.topnav a {
+  float: left;
+  color: aqua;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+
+.topnav a:hover {
+  background-color: lightseagreen;
+  color: black;
+}
+
+
+.topnav a.active {
+  background-color: teal;
+  color: white;
+}
+
+.header {
+  padding: 30px;
+  text-align: center;
+  background: lightslategray;
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+  float: left;
+  width: 30%;
+  background-color:lightslategray
+}
+
+
+.termsOfService{
+    padding: 50px;
+    margin-left : 500px;
+}
