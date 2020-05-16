@@ -8,16 +8,38 @@
     </h:head>
 <h:body style = "background: lightslategray">
   <div class="header">
-            <h1>DigiMeet Log IN</h1>
-            <p> Log in party almost over!</p>
+            <h1>DigiMeet</h1>
+            <p>D-D-D-D- Digi Meeeeeeeeeeeet</p>
         </div>
                 <div class="topnav">
                     <a href="faces/newPost.xhtml">New Post</a>
                     <a href="faces/profile.xhtml">My Profile </a>
                     <a href="faces/trends.xhtml">Posts </a>
-                    <h:outputText style ="float:right; padding: 0px 25px 0px; color:deepskyblue;font-size: 20px" value="#{user.fetchUserName()}" escape="false" />
+                    <a href="faces/friends.xhtml">Add Friend </a>
+                    <a href="faces/myFriends.xhtml">My Friends </a>
+                     <a href="faces/myFriends.xhtml">PM </a>
+                                        <!-- h:form kullanmamız lazım çünkü projeyi jsf ile yazdığımızdan
+                    diğer tür butonları kullanamıyoruz. Diğer butonlar js vs. gerektiriyor-->
+                    <h:form>  
+                    <h:commandButton action="#{user.logOff()}" value="Log out"
+                                     style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;
+                                            background-color:slategray"/>
+                    </h:form>
+                    <h:outputText style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;"
+                                            value="#{user.fetchUserName()}" escape="false" />
                 </div>
         <br></br>
         <br></br>
     </h:body>
 </html>
+

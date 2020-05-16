@@ -47,3 +47,23 @@
     padding: 50px;
     margin-left : 500px;
 }
+
+.inputTextArea:focus{
+    background-color: white;
+}
+
+.container2 {
+  padding: 50px;
+  float: right;
+  width: 30%;
+  background-color:lightslategray;
+  display:inline-block;
+}
+
+.container3 {
+  padding: 50px;
+  float: left;
+  width: 60%;
+  background-color:lightslategray;
+  display:flex;
+}

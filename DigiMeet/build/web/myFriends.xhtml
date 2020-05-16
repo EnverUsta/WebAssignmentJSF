@@ -3,17 +3,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <link rel= "stylesheet" type="text/css" href="style.css"/>
+        <link rel= "stylesheet" type="text/css" href="css/myfriends.css"/>
         <title>DigiMeet</title>
     </h:head>
-    <h:body>
-        <h2>Your All Friends</h2>
+    <h:body style = "background: lightslategray">
+  <div class="header">
+            <h1>DigiMeet</h1>
+            <p> SEE WHO IS YOUR REAL FRIEND</p>
+        </div>
+                <div class="topnav">
+                    <a href="faces/mainPage.xhtml">Main Page</a>
+                    <a href="faces/trends.xhtml">Post</a>
+                    <a href="faces/newPost.xhtml">New Post</a>
+                    <a href="faces/friends.xhtml">Add Friend </a>
+                                                                                                 <!-- h:form kullanmamız lazım çünkü projeyi jsf ile yazdığımızdan
+                    diğer tür butonları kullanamıyoruz. Diğer butonlar js vs. gerektiriyor-->
+                    <h:form>  
+                    <h:commandButton action="#{user.logOff()}" value="Log out"
+                                     style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;
+                                            background-color:slategray"/>
+                    </h:form>
+                    <h:outputText style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;"
+                                            value="#{user.fetchUserName()}" escape="false" />
+                </div>
+        <br></br>
+        <br></br>
 
         <h:form id="profile">
             <table align="center">
                 <tr> 
                 <td>
-                    <h:dataTable styleClass="dataTable" value="#{user.getMyFriendsFromDatabase()}" var="friend">
+                    <h:dataTable  value="#{user.getMyFriendsFromDatabase()}" var="friend">
                         <h:column>
                             #{friend}
                         </h:column>

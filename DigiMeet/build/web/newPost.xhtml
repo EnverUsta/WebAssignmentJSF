@@ -3,26 +3,75 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <link rel= "stylesheet" type="text/css" href="style.css"/>
+        <link rel= "stylesheet" type="text/css" href="css/login.css"/>
         <title>DigiMeet</title>
     </h:head>
-    <h:body>
-
+<h:body style = "background: slategray">
+  <div class="header">
+            <h1>DigiMeet</h1>
+            <p>Your daily post</p>
+        </div>
+                <div class="topnav">
+                    <a href="faces/mainPage.xhtml">Main Page</a>
+                    <a href="faces/profile.xhtml">My Profile</a>
+                    <a href="faces/trends.xhtml">Posts </a>
+                    <a href="faces/friends.xhtml">Add Friend </a>
+                    <a href="faces/myFriends.xhtml">My Friends </a>
+                                                            <!-- h:form kullanmamız lazım çünkü projeyi jsf ile yazdığımızdan
+                    diğer tür butonları kullanamıyoruz. Diğer butonlar js vs. gerektiriyor-->
+                    <h:form>  
+                    <h:commandButton action="#{user.logOff()}" value="Log out"
+                                     style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;
+                                            background-color:slategray"/>
+                    </h:form>
+                    <h:outputText style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;"
+                                            value="#{user.fetchUserName()}" escape="false" />
+                </div>
+    <div class="container">
         <h:form>
-            <h2>New Post</h2>
+            
+            <h2 style="text-align: center">YOUR POST:</h2>
             <table align="center">
                 <tr> 
                     <td>
                         <h:panelGrid columns="1">
                             
-                            <h:inputTextarea style="width: 700px; height: 60px" value = "#{user.post}"/>
-                            <h:commandButton action="#{user.share()}" value="Share"/>
+                            <h:inputTextarea style="width: 330px; height: 200px;
+  border: 2px solid red; background-color:slategray " styleClass="inputTextArea" value = "#{user.post}"/>
+                            <h:commandButton action="#{user.share()}" value="Share" style="  background-color: greenyellow;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 60%;
+  opacity: 0.9;
+  float:center;
+  border-radius: 4px;"/>
                         </h:panelGrid>
                     </td>
                 </tr>
             </table>
 
         </h:form>
+    </div>
+    <div>
+        <p style="padding: 50px; font-size: 30px">Short Story: My mother said to me- 'Don't ever smoke. Please don't put your family through what your Grandfather put us through." I agreed. At 28, I have never touched a cigarette. I must say, I feel a very slight sense of regret for never having done it, because your assignment gave me cancer anyway.</p>
+    </div>
+    <div style ="display: inline-block;">
+        <img src="css/lul.png" alt="NotLikeThis" style="width:40px;height:40px; margin-left:900px; margin-right:auto "></img>
+        </div>
     </h:body>
+    
 </html>
 

@@ -3,20 +3,51 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <link rel= "stylesheet" type="text/css" href="style.css"/>
+        <link rel= "stylesheet" type="text/css" href="css/login.css"/>
         <title>DigiMeet</title>
     </h:head>
-    <h:body style = "background: lightslategray">
-        <div align="center" style="background-color: graytext">
-            <h1 style="color:red;">TRENDS</h1>
+<h:body style = "background: lightslategray">
+  <div class="header">
+            <h1>DigiMeet</h1>
+            <p>TRENDS</p>
         </div>
+                <div class="topnav">
+                    <a href="faces/mainPage.xhtml">Main Page </a>
+                    <a href="faces/newPost.xhtml">New Post</a>
+                    <a href="faces/profile.xhtml">My Profile </a>
+                    <a href="faces/friends.xhtml">Add Friend </a>
+                    <a href="faces/myFriends.xhtml">My Friends </a>
+                                        <!-- h:form kullanmamız lazım çünkü projeyi jsf ile yazdığımızdan
+                    diğer tür butonları kullanamıyoruz. Diğer butonlar js vs. gerektiriyor-->
+                    <h:form>  
+                    <h:commandButton action="#{user.logOff()}" value="Log out"
+                                     style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;
+                                            background-color:slategray"/>
+                    </h:form>
+                    <h:outputText style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;"
+                                            value="#{user.fetchUserName()}" escape="false" />
+                </div>
+        <br></br>
+        <br></br>
+
         <h:form id="profile">
             <table align="center" style="padding: 20px">
                 <tr>
                     <td>
                         <h:dataTable value="#{user.getMyFriendsPosts()}" var="post">
                                 <h:column>
-                                    <div style="background-color: white; min-width: 1000px; margin:10px; padding:15px; text-align: center; color: red;">
+                                    <div style="width: 800px; height: 40px;
+  border: 2px solid red; background-color:slategray; display:inline-block">
                                         <h:outputText value="#{post}"/>
                                     </div>
                                 </h:column>

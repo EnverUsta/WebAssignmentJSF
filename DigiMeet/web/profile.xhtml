@@ -4,36 +4,56 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link rel= "stylesheet" type="text/css" href="style.css"/>
+        <link rel= "stylesheet" type="text/css" href="css/login.css"/>
         <title>DigiMeet</title>
     </h:head>
-    <h:body>
-        <h2>Profile</h2>
-
-        <h:form id="profile">
-            <table align="center">
-                <tr style="padding: 10px"> 
-                    <td>
-                        <h:commandButton action="#{user.goAccount()}" value="Account"/>
-                    </td>
-                    <td>      </td>
-                    <td>
-                        <h:commandButton action="#{user.goFriends()}" value="Follow Friend"/>
-                    </td>
-                    <td>
-                        <h:commandButton action="#{user.goMyFriends()}" value="My Friends"/>
-                    </td>
-                    <td align="right">
-                        <h:commandButton action="#{user.goNewPost()}" value="New Post"/>
-                    </td>
-                </tr>
-            </table>
+<h:body style = "background: lightslategray">
+  <div class="header">
+            <h1>DigiMeet</h1>
+            <p>D-D-D-D- Digi Meeeeeeeeeeeet</p>
+        </div>
+                <div class="topnav">
+                    <a href="faces/newPost.xhtml">New Post</a>
+                    <a href="faces/profile.xhtml">My Profile </a>
+                    <a href="faces/trends.xhtml">Posts </a>
+                    <a href="faces/friends.xhtml">Add Friend </a>
+                    <a href="faces/myFriends.xhtml">My Friends </a>
+                                        <!-- h:form kullanmamız lazım çünkü projeyi jsf ile yazdığımızdan
+                    diğer tür butonları kullanamıyoruz. Diğer butonlar js vs. gerektiriyor-->
+                    <h:form>  
+                    <h:commandButton action="#{user.logOff()}" value="Log out"
+                                     style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;
+                                            background-color:slategray"/>
+                    </h:form>
+                    <h:outputText style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;"
+                                            value="#{user.fetchUserName()}" escape="false" />
+                </div>
+        <br></br>
+        <br></br>
+        <div style="display:inline-block">
+            <h:outputText style="padding:20px; text-size:20px" value="#{user.fetchUserName()}" escape="false"/>
+            <h:outputText style="padding:20px; text-size:20px" value="#{user.fetchSurname()}" escape="false"/>
+            <h:outputText style="padding:20px; text-size:20px" value="#{user.e_mail}" escape="false"/>
+            
+        </div>
+        <h:form>
             <table align="center" style="padding: 20px">
                 <tr>
                     <td>
                         <h:dataTable value="#{user.getMyPosts()}" var="post">
                                 <h:column>
-                                    <div style="background-color: white; min-width: 1000px; margin:10px; padding:15px; text-align: center; color: red;">
+                                    <div style="width: 800px; height: 40px;
+  border: 2px solid red; background-color:slategray; display:inline-block">
                                         <h:outputText value="#{post}"/>
                                     </div>
                                 </h:column>

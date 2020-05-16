@@ -3,25 +3,69 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <link rel= "stylesheet" type="text/css" href="style.css"/>
+        <link rel= "stylesheet" type="text/css" href="css/login.css"/>
         <title>DigiMeet</title>
     </h:head>
-    <h:body>
-        <h2>Following</h2>
+<h:body style = "background: slategray">
+  <div class="header">
+            <h1>DigiMeet</h1>
+            <p>You can follow someone here!</p>
+        </div>
+                <div class="topnav">
+                    <a href="faces/mainPage.xhtml">Main Page</a>
+                    <a href="faces/profile.xhtml">My Profile</a>
+                    <a href="faces/trends.xhtml">Posts </a>
+                    <a href="faces/myFriends.xhtml">My Friends </a>
+                                                                              <!-- h:form kullanmamız lazım çünkü projeyi jsf ile yazdığımızdan
+                    diğer tür butonları kullanamıyoruz. Diğer butonlar js vs. gerektiriyor-->
+                    <h:form>  
+                    <h:commandButton action="#{user.logOff()}" value="Log out"
+                                     style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;
+                                            background-color:slategray"/>
+                    </h:form>
+                    <h:outputText style ="float: right;
+                                            color: aqua;
+                                            text-align: center;
+                                            padding: 14px 16px;
+                                            text-decoration: none;
+                                            font-size: 30px;"
+                                            value="#{user.fetchUserName()}" escape="false" />
+                </div>
+    <div class="container">
+        <h2>Follow someone young fella</h2>
 
         <h:form id="profile">
-            <table align="center">
+            <table>
                 <tr> 
-                    <td> 
-                        <h:inputText value="#{user.userName}" />
-                        <h:commandButton
-                            action="#{user.addFriend()}"
-                            value="Follow"/>
-                    </td>
+                <td> 
+                    <h:outputText style="padding:10px" value="Add Friend:" />
+                    <h:inputText style="border: 2px solid red; background-color:slategray; padding:10px" value="#{user.userName}" />
+                    
+                   <h:commandButton
+                       action="#{user.addFriend()}"
+                       value="Add"
+                       style="  background-color: greenyellow;
+                                color: white;
+                                padding: 14px 20px;
+                                margin: 8px 0;
+                                border: none;
+                                cursor: pointer;
+                                width: 80%;
+                                opacity: 0.8;
+                                float:center;
+                                border-radius: 4px;
+                                color:black;"/>
+                </td>
                 </tr>
             </table>
             
         </h:form>
+    </div>
     </h:body>
 </html>
 

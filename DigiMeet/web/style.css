@@ -24,8 +24,8 @@ h2{
 }
 
 .dataTable{
-    text-align: center;
-    color: pink;
+    width: 800px; height: 40px;
+    border: 2px solid lightslategray; background-color:slategray; display:inline-block
 }
 
 .columnClass{

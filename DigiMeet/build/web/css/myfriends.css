@@ -1,0 +1,49 @@
+.topnav {
+  background-color: slategray;
+  overflow: hidden;
+}
+
+
+.topnav a {
+  float: left;
+  color: aqua;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+
+.topnav a:hover {
+  background-color: lightseagreen;
+  color: black;
+}
+
+
+.topnav a.active {
+  background-color: teal;
+  color: white;
+}
+
+.header {
+  padding: 30px;
+  text-align: center;
+  background: lightslategray;
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+.dataTable{
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid lightslategray;
+    padding: 8px;
+}
+
+
+.dataTable{
+    width: 800px; height: 40px;
+    border: 2px solid lightslategray; background-color:slategray; display:inline-block
+}

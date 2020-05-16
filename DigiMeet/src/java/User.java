@@ -19,7 +19,6 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class User {
     static final String databaseConnectionUrl = "jdbc:derby://localhost:1527/DigiMeet";
-    static int id = 0;
     String name;
     String surname;
     String userName;
@@ -107,15 +106,14 @@ public class User {
     public String signUp(){
         try{
             Connection conn = DriverManager.getConnection(databaseConnectionUrl);
-            PreparedStatement pSt = conn.prepareStatement("insert into USERS values(?,?,?,?,?,?)");
+            PreparedStatement pSt = conn.prepareStatement("insert into USERS values(?,?,?,?,?)");
             
             
-            pSt.setInt(1, id++);
-            pSt.setString(2, name);
-            pSt.setString(3, surname);
-            pSt.setString(4, e_mail);
-            pSt.setString(5, password);
-            pSt.setString(6, gender);
+            pSt.setString(1, name);
+            pSt.setString(2, surname);
+            pSt.setString(3, e_mail);
+            pSt.setString(4, password);
+            pSt.setString(5, gender);
             pSt.executeUpdate();
             
             pSt.close();
@@ -124,7 +122,7 @@ public class User {
         {
             e.getErrorCode();
         }
-        return "signup?faces-redirect=true";  
+        return "login?faces-redirect=true";  
     }
     
     public String goSignup() {
@@ -177,6 +175,13 @@ public class User {
                     + "padding:5px\">Name: " + getName() + "<br/>E-Mail: "
                 + getE_mail() + "</p>";
     }
+    
+    public String logOff()
+    {
+        e_mail = null;
+        password = null;
+        return "login?faces-redirect=true";
+    }
 
     public String fetchUserName(){
         String returnName = "abc";
@@ -197,6 +202,37 @@ public class User {
             System.out.println("An error occured");
         }
         return returnName;
+    }
+    
+    public String fetchSurname()
+    {
+        String returnSurName = "abc";
+        try{
+            Connection conn = DriverManager.getConnection(databaseConnectionUrl);
+            PreparedStatement pst = conn.prepareStatement("select * from users where email=?");
+            pst.setString(1, e_mail);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next())
+            {
+                returnSurName = rs.getString("SURNAME");
+            }
+            conn.close();
+            pst.close();
+            rs.close();
+        }catch(SQLException e)
+        {
+            System.out.println("An error occured");
+        }
+        return returnSurName;
+    }
+    
+    public String controlForgot()
+    {
+        String controlUserName = fetchUserName();
+        if(controlUserName.equals(userName)){
+            return "newPassword?faces-redirect=true";
+        }
+        return "forgotPassword?faces-redirect=true";
     }
     
     public String share() {      // new post  işmeleri else in içinde database işlemeleri yapıalcak
@@ -336,33 +372,20 @@ public class User {
         return "account?faces-redirect=true";   // başka returne gerek yok bu değişmicek, sadece buranın üstünded dataBase işlemelri olucak
     }
 
-    public String listFriends() {   //burda  web sayfasına dataBaseden arkadaşları çekip yazıcaz ama nasıl olucak bilmiyom :)
-        String result = "<p style=\"font-family: monospace;font-size: 25px\">";
-
-        //database'den arkadaşlar ID stringi alıp substringle bölücez sonra o idlerin usernameini databese'den alıp bir diziye atıcaz
-        //usernameleri döngüde resulta eklicez örnek : result+= dizi[i]+<br\>         
-        return result + "</p> ";
-    }
-
-   
-    public String updatePassword() {   //databasede şifreyei güncellicez
+    public String updatePassword() throws SQLException {   //databasede şifreyei güncellicez
 
         if (password.isEmpty()) {
             return "newPassword?faces-redirect=true";
         } else {
+            Connection conn = DriverManager.getConnection(databaseConnectionUrl);
+            PreparedStatement pst = conn.prepareStatement("Update USERS set password=? where email=?");
+            pst.setString(1, password);
+            pst.setString(2, e_mail);
+            pst.executeUpdate();
             return "login?faces-redirect=true";
         }
     }
    
-    public String controlForgot() { // database de  e-mail ve username uyuşuyomu diye bakıcaz uyuşuyorsa yeni şifre girme ekranına yönlendir
-        //burası değişicek if(database işlemleri okeyse)-> newPassword sayfasına  birde else ile forgotPassword sayfasına
-        if ((e_mail.isEmpty()) || (userName.isEmpty())) {
-            return "forgotPassword?faces-redirect=true";//"Username or E-mail is empty!";//
-        } else {
-            return "newPassword?faces-redirect=true";
-        }
-    }
-
     public String login(){  //else if de database de  password ve username uyuşuyomu diye bakıcaz uyuşuyorsa return ile mainPage ekranına yönlendir
         //burası değişicek if(database işlemleri okeyse)-> mainPage sayfasına  birde else ile login sayfasına
         if ((e_mail.isEmpty()) || (password.isEmpty())) {
