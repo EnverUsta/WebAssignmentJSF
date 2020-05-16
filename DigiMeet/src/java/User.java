@@ -27,6 +27,24 @@ public class User {
     static String e_mail;
     static String password;
     String post;
+    String pm;
+    String friendEmail;
+
+    public String getPm() {
+        return pm;
+    }
+
+    public void setPm(String pm) {
+        this.pm = pm;
+    }
+
+    public String getFriendEmail() {
+        return friendEmail;
+    }
+
+    public void setFriendEmail(String friendEmail) {
+        this.friendEmail = friendEmail;
+    }
     List<String> myPosts = new ArrayList<>();
 
     boolean control_of_accept;   // hükmlülük yasal şeyleri kabul etme tiki
@@ -366,12 +384,6 @@ public class User {
         return "friends?faces-redirect=true";
     }
 
-    public String updateAccount() {   //profil->account ||  burda yeni veri yazmış olanları (!isEmpty()) ile olabilir mesela  kontrol edip dataBase de güncellicez
-        //country yi kontrol ederken seçili şehir databasede ki ile aynı değilse update edilicek
-
-        return "account?faces-redirect=true";   // başka returne gerek yok bu değişmicek, sadece buranın üstünded dataBase işlemelri olucak
-    }
-
     public String updatePassword() throws SQLException {   //databasede şifreyei güncellicez
 
         if (password.isEmpty()) {
@@ -418,4 +430,47 @@ public class User {
             } 
         }
     }
+   
+    public String sendPm() throws SQLException
+    {
+        Connection conn = DriverManager.getConnection(databaseConnectionUrl);
+        PreparedStatement pst = conn.prepareStatement("insert into PM values(?,?,?)");
+        pst.setString(1, e_mail);
+        pst.setString(2, friendEmail);
+        pst.setString(3, pm);
+        pst.executeUpdate();
+        conn.close();
+        pst.close();
+        pst.close();
+        return "mainPage?faces-redirect=true";
+    } 
+    
+    public List<PMClass> fetchAllMyPm() throws SQLException
+    {
+        List<PMClass> allMessages = new ArrayList<>();
+        Connection conn = DriverManager.getConnection(databaseConnectionUrl);
+        PreparedStatement pst = conn.prepareStatement("select MESSAGE, FRIEND1 from PM where FRIEND2=?");
+        pst.setString(1, e_mail);
+        ResultSet rs = pst.executeQuery();
+        while(rs.next())
+        {
+            PMClass pmclass = new PMClass();
+            pmclass.setMessage(rs.getString("MESSAGE"));
+            //pmclass.setWhoSent(rs.getString("FRIEND1"));
+            String whoSent = rs.getString("FRIEND1");
+            PreparedStatement pst2 = conn.prepareStatement("select NAME from USERS where EMAIL=?");
+            pst2.setString(1, whoSent);
+            ResultSet rs2 = pst2.executeQuery();
+            while(rs2.next())
+            {
+                pmclass.setWhoSent(rs2.getString("NAME"));
+                break;
+            }
+            allMessages.add(pmclass);
+        }
+        conn.close();
+        pst.close();
+        return allMessages;
+    }
 }
+
